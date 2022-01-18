@@ -3,7 +3,6 @@ const express = require("express");
 const serverless = require("serverless-http");
 const app = express();
 const bodyParser = require("body-parser");
-const stripe = require('stripe')(process.env.STRIPE_PRIVATE);
 
 const router = express.Router();
 router.get("/", (req, res) => {
