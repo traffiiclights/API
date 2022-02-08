@@ -25,6 +25,9 @@ const router = express.Router();
 router.get("/", (req, res) => {
   res.writeHead(200, { "Content-Type": "text/html" });
   res.write("<h1>This is the API from traficlights!</h1>");
+  res.write(
+    "<h2>Calls</h2><ul><li>https://trafficlightshtl.netlify.app/.netlify/functions/traffic/stops?search=query, in order to get all available stops with the specific ID. You have to pass a search query in the url</li><li>The app knows the ID of the target station: Just call https://trafficlightshtl.netlify.app/.netlify/functions/traffic/departures?id=476155700, in order to get the stops for the next 5 minutes</li></ul>"
+  );
   res.end();
 });
 
@@ -46,7 +49,7 @@ router.get("/departures", async (req, res) => {
     const oneDeparture = {};
     oneDeparture.when = calcMinutes(element.when);
     oneDeparture.line = element.line.name;
-    oneDeparture.direction = element.direction
+    oneDeparture.direction = element.direction;
     resArr.push(oneDeparture);
   });
   res.json({ dept: resArr });
