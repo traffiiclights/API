@@ -52,7 +52,7 @@ router.get("/departures", async (req, res) => {
   res.json({ dept: resArr });
 });
 
-app.use("/.netlify/functions/api", router); // path must route to lambda
+app.use("/.netlify/functions/traffic", router); // path must route to lambda
 
 module.exports = app;
 module.exports.handler = serverless(app);
