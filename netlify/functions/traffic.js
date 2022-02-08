@@ -31,6 +31,10 @@ router.get("/", (req, res) => {
   res.end();
 });
 
+router.get("/test", (req, res) => {
+  res.send("TESTSTRING");
+});
+
 router.get("/stops", async (req, res) => {
   const stops = await client.locations(req.query.search, {
     stops: true,

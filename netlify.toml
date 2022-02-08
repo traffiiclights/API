@@ -3,7 +3,3 @@
   command = "# no build command"
   functions = "netlify/functions"
   publish = ""
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
