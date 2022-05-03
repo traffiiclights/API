@@ -43,11 +43,13 @@ router.get("/stops", async (req, res) => {
     linesOfStops: true,
     results: 1,
   });
+  console.log(stops);
   res.json({ station: req.query.search, stops: stops, amount: stops.length });
 });
 
 router.get("/departures", async (req, res) => {
   const departures = await client.departures(req.query.id, { duration: 5 });
+  console.log(departures);
   const resArr = [];
   departures.forEach((element) => {
     const oneDeparture = {};
@@ -56,7 +58,7 @@ router.get("/departures", async (req, res) => {
     oneDeparture.direction = element.direction;
     resArr.push(oneDeparture);
   });
-  res.json({ dept: resArr });
+  res.json({ stop: departures[0].stop.name, dept: resArr });
 });
 
 app.use("/.netlify/functions/traffic", router); // path must route to lambda
