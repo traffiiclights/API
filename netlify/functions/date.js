@@ -19,10 +19,11 @@ const calcMinutes = (from) => {
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  res.json({
-    date: moment().locale('de').format("l").substring(0, 4),
-    time: moment().locale('de').format("LT"),
-  });
+  res.send(
+    moment().locale("de").format("l").substring(0, 4) +
+      "," +
+      moment().locale("de").format("LT")
+  );
 });
 
 app.use("/.netlify/functions/date", router); // path must route to lambda
