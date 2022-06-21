@@ -20,8 +20,8 @@ const router = express.Router();
 
 router.get("/", (req, res) => {
   res.json({
-    date: moment().format("l").substring(0, 4),
-    time: moment().format("LT"),
+    date: moment().locale('de').format("l").substring(0, 4),
+    time: moment().locale('de').format("LT"),
   });
 });
 
