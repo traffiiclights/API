@@ -13,8 +13,9 @@ const client = createClient(vvtProfile, "api");
 var moment = require("moment");
 
 const calcMinutes = (from) => {
-  var now = moment().utc();
+  var now = moment().utc().format("HH:mm");
   var dep = moment.utc(from);
+  console.log(now + " " + dep)
 
   var dif = dep.subtract(now).format("mm");
 
@@ -49,10 +50,11 @@ router.get("/stops", async (req, res) => {
 
 router.get("/departures", async (req, res) => {
   const departures = await client.departures(req.query.id, { duration: 5 });
-  console.log(departures);
+  // console.log(departures);
   const resArr = [];
   departures.forEach((element) => {
     const oneDeparture = {};
+    console.log(element.when)
     oneDeparture.when = calcMinutes(element.when);
     oneDeparture.line = element.line.name;
     oneDeparture.direction = element.direction;
