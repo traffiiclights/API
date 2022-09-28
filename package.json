@@ -22,6 +22,6 @@
     "hafas-client": "^5.22.2",
     "moment": "^2.29.1",
     "serverless-http": "^2.7.0",
-    "webuntis": "^1.17.0"
+    "webuntis": "^1.22.1"
   }
 }

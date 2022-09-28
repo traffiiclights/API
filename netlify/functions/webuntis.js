@@ -6,10 +6,7 @@ const bodyParser = require("body-parser");
 
 // Webuntis
 const WebUntisLib = require("webuntis");
-const untis = new WebUntisLib.WebUntisAnonymousAuth(
-  "htl1-innsbruck",
-  "neilo.webuntis.com"
-);
+const untis = new WebUntisLib('htl1-innsbruck', 'Marcel.Maffey', 'Eingang_1', 'neilo.webuntis.com');
 
 const router = express.Router();
 router.get("/", (req, res) => {
@@ -26,6 +23,13 @@ router.get("/classes", async (req, res) => {
   });
   res.json({ class: classes[index] });
 });
+
+router.get("/upcomingExams", async (req, res) => {
+  await untis.login();
+  const exams = await untis.getExamsForRange(new Date(2022, 9, 28),
+    new Date(2023, 9, 28), req.query.id, false, true)
+  res.json(exams)
+})
 
 router.get("/timetableToday", async (req, res) => {
   await untis.login();
