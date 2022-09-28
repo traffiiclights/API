@@ -50,14 +50,14 @@ router.get("/stops", async (req, res) => {
 
 router.get("/departures", async (req, res) => {
   const departures = await client.departures(req.query.id, { duration: 5 });
-  // console.log(departures);
+  console.log(departures);
   const resArr = [];
   departures.forEach((element) => {
     const oneDeparture = {};
-    console.log(element.when)
     oneDeparture.when = calcMinutes(element.when);
     oneDeparture.line = element.line.name;
     oneDeparture.direction = element.direction;
+    oneDeparture.platform = element.platform
     resArr.push(oneDeparture);
   });
   res.json({ stop: departures[0].stop.name, dept: resArr });
